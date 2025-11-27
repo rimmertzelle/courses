@@ -1,11 +1,16 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { seedClients } from '../src/modules/clients/seed.js';
+import { seedCourses } from '../src/modules/courses/seed.js';
 
 const prisma = new PrismaClient();
 
 async function main(): Promise<void> {
-  const count = await seedClients(prisma);
-  console.log(`Seeded ${count} clients`);
+  const [clientsCount, coursesCount] = await Promise.all([
+    seedClients(prisma),
+    seedCourses(prisma),
+  ]);
+  console.log(`Seeded ${clientsCount} clients`);
+  console.log(`Seeded ${coursesCount} courses`);
 }
 
 main()

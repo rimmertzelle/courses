@@ -17,9 +17,47 @@ datasource db {
   url = env("DATABASE_URL") // error will be removed once we upgrade to Prisma version 7
 }
 
+enum Phase {
+  analyse
+  ontwerp
+  implementatie
+  evaluatie
+}
+
+enum Track {
+  SE
+  DS
+  Both
+}
+
+type PhaseScores {
+  analyse       Int
+  ontwerp       Int
+  implementatie Int
+  evaluatie     Int
+}
+
 model Client {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   email     String   @unique
   name      String?
+}
+
+model Product {
+  id     String   @id @map("_id")
+  label  String
+  phases Phase[]
+}
+
+model Course {
+  id               String       @id @map("_id")
+  naam             String
+  jaar             Int
+  blok             Int
+  track            Track
+  ects             Float
+  programmeertaal  String?
+  phaseScores      PhaseScores
+  producten        String[]     // product.id references
 }

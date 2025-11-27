@@ -1,0 +1,867 @@
+{
+  "phases": [
+    "analyse",
+    "ontwerp",
+    "implementatie",
+    "evaluatie"
+  ],
+  "products": [
+    {
+      "id": "umlDiagram",
+      "label": "UML-diagram",
+      "phases": ["analyse", "ontwerp"]
+    },
+    {
+      "id": "requirementsDocument",
+      "label": "Requirementsdocument",
+      "phases": ["analyse", "ontwerp"]
+    },
+    {
+      "id": "architectureDocument",
+      "label": "Architectuurdocument",
+      "phases": ["ontwerp"]
+    },
+    {
+      "id": "businessCase",
+      "label": "Businesscase",
+      "phases": ["analyse"]
+    },
+    {
+      "id": "designDocument",
+      "label": "Ontwerpdocument",
+      "phases": ["ontwerp"]
+    },
+    {
+      "id": "projectPlan",
+      "label": "Projectplan",
+      "phases": ["analyse", "ontwerp"]
+    },
+    {
+      "id": "testPlan",
+      "label": "Testplan",
+      "phases": ["implementatie", "evaluatie"]
+    },
+    {
+      "id": "workingSoftware",
+      "label": "Werkende software",
+      "phases": ["implementatie"]
+    },
+    {
+      "id": "webApplication",
+      "label": "Webapplicatie",
+      "phases": ["implementatie"]
+    },
+    {
+      "id": "apiBackend",
+      "label": "API/backend-service",
+      "phases": ["implementatie"]
+    },
+    {
+      "id": "mobileApp",
+      "label": "Mobile app",
+      "phases": ["implementatie"]
+    },
+    {
+      "id": "databaseModel",
+      "label": "Databasemodel",
+      "phases": ["ontwerp", "implementatie"]
+    },
+    {
+      "id": "dataNotebook",
+      "label": "Datanotebook",
+      "phases": ["analyse", "implementatie"]
+    },
+    {
+      "id": "mlModel",
+      "label": "ML-model",
+      "phases": ["implementatie", "evaluatie"]
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "phases": ["implementatie", "evaluatie"]
+    },
+    {
+      "id": "researchReport",
+      "label": "Onderzoeksrapport",
+      "phases": ["analyse", "evaluatie"]
+    },
+    {
+      "id": "presentation",
+      "label": "Presentatie",
+      "phases": ["evaluatie"]
+    },
+    {
+      "id": "reflectionReport",
+      "label": "Reflectieverslag",
+      "phases": ["evaluatie"]
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolio",
+      "phases": ["evaluatie"]
+    },
+    {
+      "id": "internshipReport",
+      "label": "Stageverslag",
+      "phases": ["evaluatie"]
+    },
+    {
+      "id": "thesis",
+      "label": "Afstudeerverslag",
+      "phases": ["analyse", "evaluatie"]
+    }
+  ],
+  "courses": [
+    {
+      "id": "Y1B1-PCO",
+      "naam": "Programme & Career Orientation",
+      "jaar": 1,
+      "blok": 1,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 2,
+        "implementatie": 1,
+        "evaluatie": 4
+      },
+      "producten": [
+        "reflectionReport",
+        "presentation",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "Y1B1-ProgBasics",
+      "naam": "Programming Basics",
+      "jaar": 1,
+      "blok": 1,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "JavaScript",
+      "phaseScores": {
+        "analyse": 2,
+        "ontwerp": 2,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "workingSoftware",
+        "webApplication",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y1B1-CSBasics",
+      "naam": "Computer Science Basics",
+      "jaar": 1,
+      "blok": 1,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 2,
+        "implementatie": 1,
+        "evaluatie": 3
+      },
+      "producten": [
+        "researchReport",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y1B2-OOP",
+      "naam": "Object Oriented Programming",
+      "jaar": 1,
+      "blok": 2,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "TypeScript",
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "umlDiagram",
+        "workingSoftware",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y1B2-ITPM",
+      "naam": "IT Project Management",
+      "jaar": 1,
+      "blok": 2,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 3,
+        "implementatie": 2,
+        "evaluatie": 4
+      },
+      "producten": [
+        "projectPlan",
+        "reflectionReport",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y1B2-FoundProj",
+      "naam": "Project: Foundations Project",
+      "jaar": 1,
+      "blok": 2,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "TypeScript",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 4,
+        "evaluatie": 4
+      },
+      "producten": [
+        "designDocument",
+        "umlDiagram",
+        "workingSoftware",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y1B3-SEBasics",
+      "naam": "Software Engineering Basics",
+      "jaar": 1,
+      "blok": 3,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "Java/C#",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 3,
+        "evaluatie": 3
+      },
+      "producten": [
+        "architectureDocument",
+        "umlDiagram",
+        "designDocument"
+      ]
+    },
+    {
+      "id": "Y1B3-DB",
+      "naam": "Databases",
+      "jaar": 1,
+      "blok": 3,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "SQL",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 3,
+        "evaluatie": 3
+      },
+      "producten": [
+        "databaseModel",
+        "dataNotebook",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y1B3-ReqMod",
+      "naam": "Requirements Modelling",
+      "jaar": 1,
+      "blok": 3,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 4,
+        "implementatie": 1,
+        "evaluatie": 3
+      },
+      "producten": [
+        "requirementsDocument",
+        "umlDiagram",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y1B4-WebAppDev",
+      "naam": "Web Application Development",
+      "jaar": 1,
+      "blok": 4,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "PHP",
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "webApplication",
+        "apiBackend",
+        "testPlan",
+        "designDocument"
+      ]
+    },
+    {
+      "id": "Y1B4-DSBasics",
+      "naam": "Data Science Basics",
+      "jaar": 1,
+      "blok": 4,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 2,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "dashboard",
+        "researchReport"
+      ]
+    },
+    {
+      "id": "Y1B4-AppliedClient",
+      "naam": "Project: Applied Client Solutions",
+      "jaar": 1,
+      "blok": 4,
+      "track": "Both",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 4,
+        "evaluatie": 4
+      },
+      "producten": [
+        "businessCase",
+        "designDocument",
+        "workingSoftware",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y2SEB1-FullStack",
+      "naam": "Full Stack Development",
+      "jaar": 2,
+      "blok": 1,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": "C# / JavaScript",
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "webApplication",
+        "apiBackend",
+        "testPlan",
+        "architectureDocument"
+      ]
+    },
+    {
+      "id": "Y2SEB1-SaaS",
+      "naam": "SaaS",
+      "jaar": 2,
+      "blok": 1,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": "C#",
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "apiBackend",
+        "dashboard",
+        "testPlan",
+        "architectureDocument"
+      ]
+    },
+    {
+      "id": "Y2SEB2-SoftOpt",
+      "naam": "Software Optimisation",
+      "jaar": 2,
+      "blok": 2,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": "C#",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 3,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "workingSoftware",
+        "testPlan",
+        "researchReport"
+      ]
+    },
+    {
+      "id": "Y2SEB2-OpsCICD",
+      "naam": "Ops / CI/CD",
+      "jaar": 2,
+      "blok": 2,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 3,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "testPlan",
+        "designDocument",
+        "researchReport"
+      ]
+    },
+    {
+      "id": "Y2SEB3-MobileDev",
+      "naam": "Mobile Development",
+      "jaar": 2,
+      "blok": 3,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": "Kotlin/Swift",
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 3
+      },
+      "producten": [
+        "mobileApp",
+        "apiBackend",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y2SEB3-UX",
+      "naam": "User Experience",
+      "jaar": 2,
+      "blok": 3,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 5,
+        "implementatie": 2,
+        "evaluatie": 4
+      },
+      "producten": [
+        "designDocument",
+        "reflectionReport",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y2SEB4-AI4Dev",
+      "naam": "AI for Developers",
+      "jaar": 2,
+      "blok": 4,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "mlModel",
+        "dataNotebook",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y2SEB4-DesignThinking",
+      "naam": "Project: Design Thinking",
+      "jaar": 2,
+      "blok": 4,
+      "track": "SE",
+      "ects": 7.5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 5,
+        "implementatie": 3,
+        "evaluatie": 4
+      },
+      "producten": [
+        "businessCase",
+        "designDocument",
+        "umlDiagram",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y2SEB4-ITPersonality",
+      "naam": "IT Personality",
+      "jaar": 2,
+      "blok": 4,
+      "track": "SE",
+      "ects": 2.5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 1,
+        "implementatie": 1,
+        "evaluatie": 5
+      },
+      "producten": [
+        "reflectionReport",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "Y2DSB1-BusinessUnd",
+      "naam": "Business Understanding",
+      "jaar": 2,
+      "blok": 1,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 3,
+        "implementatie": 1,
+        "evaluatie": 3
+      },
+      "producten": [
+        "businessCase",
+        "researchReport",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y2DSB1-DataPrep",
+      "naam": "Data Preparation",
+      "jaar": 2,
+      "blok": 1,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 4,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "databaseModel",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y2DSB2-OrgEff",
+      "naam": "Project: Organisational Efficiency",
+      "jaar": 2,
+      "blok": 2,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 4,
+        "implementatie": 2,
+        "evaluatie": 4
+      },
+      "producten": [
+        "businessCase",
+        "designDocument",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "Y2DSB2-Predictive",
+      "naam": "Predictive Modelling Systems",
+      "jaar": 2,
+      "blok": 2,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 4,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "mlModel",
+        "researchReport"
+      ]
+    },
+    {
+      "id": "Y2DSB3-Comm",
+      "naam": "Communication",
+      "jaar": 2,
+      "blok": 3,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 3,
+        "implementatie": 2,
+        "evaluatie": 5
+      },
+      "producten": [
+        "researchReport",
+        "presentation",
+        "reflectionReport"
+      ]
+    },
+    {
+      "id": "Y2DSB3-ModelOpt",
+      "naam": "Model Optimisation",
+      "jaar": 2,
+      "blok": 3,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "mlModel",
+        "testPlan"
+      ]
+    },
+    {
+      "id": "Y2DSB4-EthicsIT",
+      "naam": "Ethics in IT",
+      "jaar": 2,
+      "blok": 4,
+      "track": "DS",
+      "ects": 2.5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 2,
+        "implementatie": 1,
+        "evaluatie": 4
+      },
+      "producten": [
+        "researchReport",
+        "reflectionReport",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y2DSB4-DataSpec",
+      "naam": "Data Specialisation",
+      "jaar": 2,
+      "blok": 4,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 3,
+        "implementatie": 4,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "mlModel",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "Y3-Internship",
+      "naam": "Internship",
+      "jaar": 3,
+      "blok": 0,
+      "track": "Both",
+      "ects": 30,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 5
+      },
+      "producten": [
+        "internshipReport",
+        "workingSoftware",
+        "researchReport",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "Y3-Minor",
+      "naam": "Minor",
+      "jaar": 3,
+      "blok": 0,
+      "track": "Both",
+      "ects": 30,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 3,
+        "implementatie": 3,
+        "evaluatie": 3
+      },
+      "producten": [
+        "researchReport",
+        "presentation",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "Y4SEB1-ModernProg",
+      "naam": "Modern Programming Practices",
+      "jaar": 4,
+      "blok": 1,
+      "track": "SE",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 3,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "workingSoftware",
+        "testPlan",
+        "architectureDocument"
+      ]
+    },
+    {
+      "id": "Y4SEB2-ComplexProj",
+      "naam": "Complex Project",
+      "jaar": 4,
+      "blok": 2,
+      "track": "SE",
+      "ects": 15,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "designDocument",
+        "workingSoftware",
+        "umlDiagram",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y4SEB4-GradProjSE",
+      "naam": "Graduation Project (SE)",
+      "jaar": 4,
+      "blok": 4,
+      "track": "SE",
+      "ects": 30,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 5
+      },
+      "producten": [
+        "thesis",
+        "researchReport",
+        "workingSoftware",
+        "presentation",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "Y4DSB1-DeepLearning",
+      "naam": "Deep Learning",
+      "jaar": 4,
+      "blok": 1,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": "Python",
+      "phaseScores": {
+        "analyse": 4,
+        "ontwerp": 2,
+        "implementatie": 5,
+        "evaluatie": 4
+      },
+      "producten": [
+        "dataNotebook",
+        "mlModel",
+        "researchReport"
+      ]
+    },
+    {
+      "id": "Y4DSB2-GradPrep",
+      "naam": "Graduation Preparation (DS)",
+      "jaar": 4,
+      "blok": 2,
+      "track": "DS",
+      "ects": 5,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 4,
+        "implementatie": 1,
+        "evaluatie": 3
+      },
+      "producten": [
+        "researchReport",
+        "projectPlan",
+        "presentation"
+      ]
+    },
+    {
+      "id": "Y4DSB4-GradProjDS",
+      "naam": "Graduation Project (DS)",
+      "jaar": 4,
+      "blok": 4,
+      "track": "DS",
+      "ects": 30,
+      "programmeertaal": null,
+      "phaseScores": {
+        "analyse": 5,
+        "ontwerp": 4,
+        "implementatie": 5,
+        "evaluatie": 5
+      },
+      "producten": [
+        "thesis",
+        "researchReport",
+        "mlModel",
+        "dashboard",
+        "portfolio"
+      ]
+    }
+  ]
+}

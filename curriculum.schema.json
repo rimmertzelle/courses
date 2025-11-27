@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/curriculum.schema.json",
+  "title": "HZ HBO-ICT Curriculum",
+  "type": "object",
+  "required": ["phases", "products", "courses"],
+  "properties": {
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["analyse", "ontwerp", "implementatie", "evaluatie"]
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "phases"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]+([A-Za-z0-9_])*?$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["analyse", "ontwerp", "implementatie", "evaluatie"]
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "naam",
+          "jaar",
+          "blok",
+          "track",
+          "ects",
+          "programmeertaal",
+          "phaseScores",
+          "producten"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "naam": {
+            "type": "string"
+          },
+          "jaar": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "blok": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4,
+            "description": "0 = heel jaar (bijv. stage/minor), 1–4 = blok"
+          },
+          "track": {
+            "type": "string",
+            "enum": ["SE", "DS", "Both"]
+          },
+          "ects": {
+            "type": "number",
+            "minimum": 0
+          },
+          "programmeertaal": {
+            "type": ["string", "null"]
+          },
+          "phaseScores": {
+            "type": "object",
+            "required": ["analyse", "ontwerp", "implementatie", "evaluatie"],
+            "properties": {
+              "analyse": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "ontwerp": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "implementatie": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "evaluatie": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "additionalProperties": false
+          },
+          "producten": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "product.id uit de products-lijst"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

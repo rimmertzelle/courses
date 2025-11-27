@@ -1,4 +1,4 @@
-import { PrismaClient, Client } from '../../prisma/generated/prisma/client.ts';
+import { PrismaClient, Client } from '../../../prisma/generated/prisma/client.ts';
 
 // Keep it minimal: only model fields that are user-provided.
 const clients: Array<Pick<Client, 'name' | 'email'>> = [
