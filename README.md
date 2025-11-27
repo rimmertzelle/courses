@@ -1,4 +1,4 @@
-## express-ts-skeleton-app
+## Courses dashboard
 
 TypeScript + Express 5 + Prisma (MongoDB) skeleton with a small clients domain and curriculum-backed courses domain. It follows a layered flow (router → controller → service → repository → Prisma), ships a single Prisma client, typed HTTP errors, request correlation ids, and a consistent API envelope with hypermedia links for collections.
 
