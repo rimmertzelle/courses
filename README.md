@@ -36,6 +36,7 @@ Environment variables are loaded via dotenv; `src/db/prisma.ts` throws if `DATAB
 - `dev` starts Express with nodemon + tsx
 - `start` runs the app with tsx
 - `postinstall` runs `prisma generate` (client emitted to `prisma/generated/prisma`)
+- Install the view engine: `npm install ejs`
 
 ### Prisma
 - Schema: `prisma/schema.prisma` (MongoDB provider, Prisma 6 with classic engine)
@@ -69,12 +70,13 @@ All responses share the envelope `{ meta, data }`:
   "data": [...]
 }
 ```
-- `GET /clients` → returns an array of `LinkDto` (`href`, `rel`, `title`) pointing to each client resource.
-- `GET /clients/:id` → returns a `ClientDto`; ids must be 24-char hex ObjectIds. Invalid ids raise `400 Bad Request`, missing clients raise `404 Not Found`.
-- `GET /courses` → returns an array of `LinkDto` pointing to each course resource.
-- `GET /courses/:id` → returns a `CourseDto` by course id (curriculum id string).
-- `GET /products` → returns `LinkDto`s for each distinct product referenced by courses, linking to their course overviews.
-- `GET /products/:productId/courses` → returns `CourseDto[]` for courses that include the given product id.
+- `GET /api/v1/clients` → returns an array of `LinkDto` (`href`, `rel`, `title`) pointing to each client resource.
+- `GET /api/v1/clients/:id` → returns a `ClientDto`; ids must be 24-char hex ObjectIds. Invalid ids raise `400 Bad Request`, missing clients raise `404 Not Found`.
+- `GET /api/v1/courses` → returns an array of `LinkDto` pointing to each course resource.
+- `GET /api/v1/courses/:id` → returns a `CourseDto` by course id (curriculum id string).
+- `GET /api/v1/products` → returns `LinkDto`s for each distinct product referenced by courses, linking to their course overviews.
+- `GET /api/v1/products/:productId/courses` → returns `CourseDto[]` for courses that include the given product id.
+- `GET /courses` → renders an EJS page listing all courses, their year, and phases.
 
 ### Request flow
 The layered flow for `GET /clients` is:

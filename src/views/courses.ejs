@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #0b1221;
+        --card: #11182b;
+        --muted: #cbd5e1;
+        --muted-strong: #e2e8f0;
+        --border: #1f2a44;
+        --accent: #38bdf8;
+        --shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 30%),
+          radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.15), transparent 35%),
+          var(--bg);
+        color: #e2e8f0;
+        padding: 2.5rem clamp(1rem, 3vw, 2.5rem);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.75rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        letter-spacing: -0.01em;
+      }
+      .legend {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.55rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .legend-item.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.5);
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        display: inline-block;
+      }
+      .filters {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .track-filter {
+        padding: 0.4rem 0.75rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        color: #e2e8f0;
+        cursor: pointer;
+      }
+      .track-filter.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.5);
+      }
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .year {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+      .year-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .year-badge {
+        background: rgba(56, 189, 248, 0.12);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        border-radius: 999px;
+        padding: 0.2rem 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .block-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+      }
+      .block-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.75rem;
+        min-height: 120px;
+      }
+      .block-title {
+        font-size: 0.95rem;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .course {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        gap: 0.75rem;
+        align-items: center;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+      }
+      .course:last-child { margin-bottom: 0; }
+      .course.dim {
+        opacity: 0.35;
+        filter: grayscale(0.2);
+      }
+      .course-title {
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.1rem;
+        letter-spacing: -0.01em;
+      }
+      .course-meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .chart {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #0b1221 45%, transparent 45%),
+          conic-gradient(#334155 0deg 360deg);
+        position: relative;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+      .chart::after {
+        content: '';
+        position: absolute;
+        inset: 10px;
+        background: var(--card);
+        border-radius: 50%;
+      }
+      .chart-label {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-size: 0.8rem;
+        color: var(--muted-strong);
+        z-index: 1;
+      }
+      .phase-scores {
+        display: flex;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        margin-top: 0.35rem;
+      }
+      .pill {
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        color: #0b1221;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.85);
+      }
+      .yearlong {
+        margin-top: 1.25rem;
+      }
+      @media (max-width: 640px) {
+        .course { grid-template-columns: 56px 1fr; }
+        .chart { width: 56px; height: 56px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><%= title %></h1>
+      <div class="legend" id="phase-filters">
+        <div class="legend-item" data-phase="analyse"><span class="dot" style="background:#2563eb"></span> Analyse</div>
+        <div class="legend-item" data-phase="ontwerp"><span class="dot" style="background:#7c3aed"></span> Ontwerp</div>
+        <div class="legend-item" data-phase="implementatie"><span class="dot" style="background:#16a34a"></span> Implementatie</div>
+        <div class="legend-item" data-phase="evaluatie"><span class="dot" style="background:#f97316"></span> Evaluatie</div>
+      </div>
+    </header>
+
+    <div class="filters">
+      <span style="color: var(--muted)">Track:</span>
+      <button class="track-filter active" data-track="all">All</button>
+      <button class="track-filter" data-track="SE">SE</button>
+      <button class="track-filter" data-track="DS">DS</button>
+      <button class="track-filter" data-track="Both">Both</button>
+    </div>
+
+    <div class="grid">
+      <% grid.forEach(function(row) { %>
+        <section class="year">
+          <div class="year-header">
+            <span class="year-badge">Year <%= row.year %></span>
+          </div>
+          <div class="block-grid">
+            <% row.blocks.forEach(function(block) { %>
+              <div class="block-card">
+                <div class="block-title">
+                  <span>Block <%= block.block %></span>
+                  <span><%= block.courses.length %> course<%= block.courses.length === 1 ? '' : 's' %></span>
+                </div>
+                <% if (block.courses.length === 0) { %>
+                  <div class="course-meta">No courses</div>
+                <% } else { %>
+                  <% block.courses.forEach(function(course) { %>
+                    <div class="course"
+                      data-track="<%= course.track %>"
+                      data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
+                      data-score-ontwerp="<%= course.phases.find(p => p.phase === 'ontwerp')?.score ?? 0 %>"
+                      data-score-implementatie="<%= course.phases.find(p => p.phase === 'implementatie')?.score ?? 0 %>"
+                      data-score-evaluatie="<%= course.phases.find(p => p.phase === 'evaluatie')?.score ?? 0 %>">
+                      <div class="chart" style="background: radial-gradient(circle at center, #0b1221 45%, transparent 45%), <%= course.gradient %>;">
+                        <div class="chart-label"><%= course.track %></div>
+                      </div>
+                      <div>
+                        <div class="course-title"><%= course.name %></div>
+                        <div class="course-meta">Track: <%= course.track %> · Block <%= course.block %></div>
+                        <div class="phase-scores">
+                          <% course.phases.forEach(function(seg) { %>
+                            <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
+                              <%= seg.phase %>: <%= seg.score %>
+                            </span>
+                          <% }); %>
+                        </div>
+                      </div>
+                    </div>
+                  <% }); %>
+                <% } %>
+              </div>
+            <% }); %>
+          </div>
+        </section>
+      <% }); %>
+    </div>
+
+    <% if (yearLong && yearLong.length) { %>
+      <section class="yearlong">
+        <div class="year-header">
+          <span class="year-badge">Year-long</span>
+        </div>
+        <div class="block-card">
+          <% yearLong.forEach(function(course) { %>
+            <div class="course"
+              data-track="<%= course.track %>"
+              data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
+              data-score-ontwerp="<%= course.phases.find(p => p.phase === 'ontwerp')?.score ?? 0 %>"
+              data-score-implementatie="<%= course.phases.find(p => p.phase === 'implementatie')?.score ?? 0 %>"
+              data-score-evaluatie="<%= course.phases.find(p => p.phase === 'evaluatie')?.score ?? 0 %>">
+              <div class="chart" style="background: radial-gradient(circle at center, #0b1221 45%, transparent 45%), <%= course.gradient %>;">
+                <div class="chart-label"><%= course.track %></div>
+              </div>
+              <div>
+                <div class="course-title"><%= course.name %></div>
+                <div class="course-meta">Year <%= course.year %> · Block <%= course.block %></div>
+                <div class="phase-scores">
+                  <% course.phases.forEach(function(seg) { %>
+                    <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
+                      <%= seg.phase %>: <%= seg.score %>
+                    </span>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </section>
+    <% } %>
+
+    <script src="/static/courses.js"></script>
+  </body>
+</html>

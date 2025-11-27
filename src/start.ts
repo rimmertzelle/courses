@@ -2,10 +2,12 @@
 import Express, { Application, Request, Response, NextFunction } from 'express';
 import * as Dotenv from 'dotenv';
 Dotenv.config({ path: '.env' });
-import { moduleRoutes } from './modules/index.js';
+import { apiRoutes, viewRoutes } from './modules/index.js';
 import { errorHandler } from './common/errors/index.js';
 import helmet from 'helmet';
 import { requestId } from './common/middleware/index.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * Express application bootstrap:
@@ -17,6 +19,8 @@ import { requestId } from './common/middleware/index.js';
  */
 const app: Application = Express();
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3010;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // security middleware
 app.use(helmet());
@@ -27,7 +31,13 @@ app.use(requestId);
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 
-moduleRoutes.forEach((router) => app.use('/', router));
+// view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use('/static', Express.static(path.join(__dirname, 'public')));
+
+apiRoutes.forEach((router) => app.use('/api/v1', router));
+viewRoutes.forEach((router) => app.use('/', router));
 
 // 404 catch-all handler (middleware)
 app.use((req: Request, res: Response, next: NextFunction) => {

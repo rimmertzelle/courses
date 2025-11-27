@@ -1,8 +1,9 @@
 import type { Router } from 'express';
 import { clientsRoutes } from './clients/index.js';
-import { coursesRoutes } from './courses/index.js';
+import { coursesApiRoutes, coursesViewRoutes } from './courses/index.js';
 
 export { clientsRoutes } from './clients/index.js';
-export { coursesRoutes } from './courses/index.js';
+export { coursesApiRoutes, coursesViewRoutes } from './courses/index.js';
 
-export const moduleRoutes: Router[] = [clientsRoutes, coursesRoutes];
+export const apiRoutes: Router[] = [clientsRoutes, coursesApiRoutes];
+export const viewRoutes: Router[] = [coursesViewRoutes];

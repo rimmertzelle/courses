@@ -1,34 +1,20 @@
 import Express, { Router } from 'express';
-import { getCourse, getCourses, getCoursesByProduct, getProducts } from './controller.js';
+import { getCourse, getCourses, getCoursesByProduct, getProducts, renderCoursesView } from './controller.js';
 
-const router: Router = Express.Router();
-
-/**
- * Router for course-related endpoints.
- */
+const apiRouter: Router = Express.Router();
+const viewRouter: Router = Express.Router();
 
 /**
- * GET /courses
- * Returns a hypermedia list of links to course resources.
+ * API router for course-related endpoints.
  */
-router.get('/courses', getCourses);
+apiRouter.get('/courses', getCourses);
+apiRouter.get('/products', getProducts);
+apiRouter.get('/products/:productId/courses', getCoursesByProduct);
+apiRouter.get('/courses/:id', getCourse);
 
 /**
- * GET /products
- * Returns a hypermedia list of links to products with course overviews.
+ * View router for course pages.
  */
-router.get('/products', getProducts);
+viewRouter.get('/courses', renderCoursesView);
 
-/**
- * GET /products/:productId/courses
- * Returns all courses for a given product deliverable.
- */
-router.get('/products/:productId/courses', getCoursesByProduct);
-
-/**
- * GET /courses/:id
- * Returns a single course resource by id.
- */
-router.get('/courses/:id', getCourse);
-
-export default router;
+export { apiRouter as coursesApiRoutes, viewRouter as coursesViewRoutes };
