@@ -1,6 +1,6 @@
 ## express-ts-skeleton-app
 
-TypeScript + Express 5 + Prisma (MongoDB) skeleton with a small clients domain. It follows a layered flow (router → controller → service → repository → Prisma), ships a single Prisma client, typed HTTP errors, request correlation ids, and a consistent API envelope with hypermedia links for collections.
+TypeScript + Express 5 + Prisma (MongoDB) skeleton with a small clients domain and curriculum-backed courses domain. It follows a layered flow (router → controller → service → repository → Prisma), ships a single Prisma client, typed HTTP errors, request correlation ids, and a consistent API envelope with hypermedia links for collections.
 
 ### Prerequisites
 - Node.js LTS and npm
@@ -25,7 +25,7 @@ docker exec $(docker-compose ps -q mongo) mongosh --quiet --eval "try { rs.statu
 4) Generate the Prisma client and sync the schema:
    - `npx prisma generate`
    - `npx prisma db push`  # MongoDB uses `db push` instead of migrations
-5) Seed sample data: `npx prisma db seed`  # seeds Clients
+5) Seed sample data: `npx prisma db seed`  # seeds Clients and Courses from curriculum.data.json
 6) Run the API:
    - Dev (watch): `npm run dev` (nodemon + tsx)
    - Prod: `npm run start` (tsx)
@@ -51,6 +51,7 @@ Environment variables are loaded via dotenv; `src/db/prisma.ts` throws if `DATAB
 - `src/common/utils` – response envelope helpers (`ok`, `created`, `noContent`, `buildMeta`), URL builder for hypermedia links, and MongoDB ObjectId validation.
 - `src/common/middleware` – `requestId` ensures every request/response has an `x-request-id`.
 - `src/modules/clients` – router, controller, service, repository, DTOs, mapper, types, and seed data for the sample Clients domain.
+- `src/modules/courses` – router, controller, service, repository, DTOs, mapper, types, and seed logic reading `curriculum.data.json` for Courses and Products link discovery.
 
 ### API shape
 All responses share the envelope `{ meta, data }`:
@@ -70,6 +71,10 @@ All responses share the envelope `{ meta, data }`:
 ```
 - `GET /clients` → returns an array of `LinkDto` (`href`, `rel`, `title`) pointing to each client resource.
 - `GET /clients/:id` → returns a `ClientDto`; ids must be 24-char hex ObjectIds. Invalid ids raise `400 Bad Request`, missing clients raise `404 Not Found`.
+- `GET /courses` → returns an array of `LinkDto` pointing to each course resource.
+- `GET /courses/:id` → returns a `CourseDto` by course id (curriculum id string).
+- `GET /products` → returns `LinkDto`s for each distinct product referenced by courses, linking to their course overviews.
+- `GET /products/:productId/courses` → returns `CourseDto[]` for courses that include the given product id.
 
 ### Request flow
 The layered flow for `GET /clients` is:
