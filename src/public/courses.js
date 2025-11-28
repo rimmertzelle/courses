@@ -2,7 +2,6 @@
   const phaseFilters = document.querySelectorAll('[data-phase]');
   const trackFilters = document.querySelectorAll('.track-filter');
   const courses = Array.from(document.querySelectorAll('.course'));
-  const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   let activePhases = new Set();
   let activeTrack = 'all';
 
@@ -14,7 +13,7 @@
       const passesPhase =
         activePhases.size === 0 ||
         Array.from(activePhases).every((phase) => {
-          const key = 'score' + capitalize(phase);
+          const key = 'score' + phase.charAt(0).toUpperCase() + phase.slice(1);
           const score = Number(course.dataset[key]) || 0;
           return score > 3;
         });

@@ -233,16 +233,16 @@
             <span class="year-badge">Year <%= row.year %></span>
           </div>
           <div class="block-grid">
-            <% row.blocks.forEach(function(block) { %>
-              <div class="block-card">
+            <% if (row.year === 3) { %>
+              <div class="block-card" style="grid-column: span 2;">
                 <div class="block-title">
-                  <span>Block <%= block.block %></span>
-                  <span><%= block.courses.length %> course<%= block.courses.length === 1 ? '' : 's' %></span>
+                  <span>Internship (Blocks 1-2)</span>
+                  <span><%= internshipCourses.length %> course<%= internshipCourses.length === 1 ? '' : 's' %></span>
                 </div>
-                <% if (block.courses.length === 0) { %>
+                <% if (internshipCourses.length === 0) { %>
                   <div class="course-meta">No courses</div>
                 <% } else { %>
-                  <% block.courses.forEach(function(course) { %>
+                  <% internshipCourses.forEach(function(course) { %>
                     <div class="course"
                       data-track="<%= course.track %>"
                       data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
@@ -254,7 +254,7 @@
                       </div>
                       <div>
                         <div class="course-title"><%= course.name %></div>
-                        <div class="course-meta">Track: <%= course.track %> · Block <%= course.block %></div>
+                        <div class="course-meta">Year <%= course.year %> · Year-long</div>
                         <div class="phase-scores">
                           <% course.phases.forEach(function(seg) { %>
                             <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
@@ -267,44 +267,80 @@
                   <% }); %>
                 <% } %>
               </div>
-            <% }); %>
+              <div class="block-card" style="grid-column: span 2;">
+                <div class="block-title">
+                  <span>Minor (Blocks 3-4)</span>
+                  <span><%= minorCourses.length %> course<%= minorCourses.length === 1 ? '' : 's' %></span>
+                </div>
+                <% if (minorCourses.length === 0) { %>
+                  <div class="course-meta">No courses</div>
+                <% } else { %>
+                  <% minorCourses.forEach(function(course) { %>
+                    <div class="course"
+                      data-track="<%= course.track %>"
+                      data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
+                      data-score-ontwerp="<%= course.phases.find(p => p.phase === 'ontwerp')?.score ?? 0 %>"
+                      data-score-implementatie="<%= course.phases.find(p => p.phase === 'implementatie')?.score ?? 0 %>"
+                      data-score-evaluatie="<%= course.phases.find(p => p.phase === 'evaluatie')?.score ?? 0 %>">
+                      <div class="chart" style="background: radial-gradient(circle at center, #0b1221 45%, transparent 45%), <%= course.gradient %>;">
+                        <div class="chart-label"><%= course.track %></div>
+                      </div>
+                      <div>
+                        <div class="course-title"><%= course.name %></div>
+                        <div class="course-meta">Year <%= course.year %> · Year-long</div>
+                        <div class="phase-scores">
+                          <% course.phases.forEach(function(seg) { %>
+                            <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
+                              <%= seg.phase %>: <%= seg.score %>
+                            </span>
+                          <% }); %>
+                        </div>
+                      </div>
+                    </div>
+                  <% }); %>
+                <% } %>
+              </div>
+            <% } else { %>
+              <% row.blocks.forEach(function(block) { %>
+                <div class="block-card">
+                  <div class="block-title">
+                    <span>Block <%= block.block %></span>
+                    <span><%= block.courses.length %> course<%= block.courses.length === 1 ? '' : 's' %></span>
+                  </div>
+                  <% if (block.courses.length === 0) { %>
+                    <div class="course-meta">No courses</div>
+                  <% } else { %>
+                    <% block.courses.forEach(function(course) { %>
+                      <div class="course"
+                        data-track="<%= course.track %>"
+                        data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
+                        data-score-ontwerp="<%= course.phases.find(p => p.phase === 'ontwerp')?.score ?? 0 %>"
+                        data-score-implementatie="<%= course.phases.find(p => p.phase === 'implementatie')?.score ?? 0 %>"
+                        data-score-evaluatie="<%= course.phases.find(p => p.phase === 'evaluatie')?.score ?? 0 %>">
+                        <div class="chart" style="background: radial-gradient(circle at center, #0b1221 45%, transparent 45%), <%= course.gradient %>;">
+                          <div class="chart-label"><%= course.track %></div>
+                        </div>
+                        <div>
+                          <div class="course-title"><%= course.name %></div>
+                          <div class="course-meta">Track: <%= course.track %> · Block <%= course.block %></div>
+                          <div class="phase-scores">
+                            <% course.phases.forEach(function(seg) { %>
+                              <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
+                                <%= seg.phase %>: <%= seg.score %>
+                              </span>
+                            <% }); %>
+                          </div>
+                        </div>
+                      </div>
+                    <% }); %>
+                  <% } %>
+                </div>
+              <% }); %>
+            <% } %>
           </div>
         </section>
       <% }); %>
     </div>
-
-    <% if (yearLong && yearLong.length) { %>
-      <section class="yearlong">
-        <div class="year-header">
-          <span class="year-badge">Year-long</span>
-        </div>
-        <div class="block-card">
-          <% yearLong.forEach(function(course) { %>
-            <div class="course"
-              data-track="<%= course.track %>"
-              data-score-analyse="<%= course.phases.find(p => p.phase === 'analyse')?.score ?? 0 %>"
-              data-score-ontwerp="<%= course.phases.find(p => p.phase === 'ontwerp')?.score ?? 0 %>"
-              data-score-implementatie="<%= course.phases.find(p => p.phase === 'implementatie')?.score ?? 0 %>"
-              data-score-evaluatie="<%= course.phases.find(p => p.phase === 'evaluatie')?.score ?? 0 %>">
-              <div class="chart" style="background: radial-gradient(circle at center, #0b1221 45%, transparent 45%), <%= course.gradient %>;">
-                <div class="chart-label"><%= course.track %></div>
-              </div>
-              <div>
-                <div class="course-title"><%= course.name %></div>
-                <div class="course-meta">Year <%= course.year %> · Block <%= course.block %></div>
-                <div class="phase-scores">
-                  <% course.phases.forEach(function(seg) { %>
-                    <span class="pill" style="background:<%= seg.color %>; color: #0b1221;">
-                      <%= seg.phase %>: <%= seg.score %>
-                    </span>
-                  <% }); %>
-                </div>
-              </div>
-            </div>
-          <% }); %>
-        </div>
-      </section>
-    <% } %>
 
     <script src="/static/courses.js"></script>
   </body>

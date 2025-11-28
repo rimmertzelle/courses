@@ -30,6 +30,9 @@ export async function seedCourses(prisma: PrismaClient): Promise<number> {
   const raw = await readFile(curriculumPath, 'utf-8');
   const { courses = [] } = JSON.parse(raw) as CurriculumData;
 
+  // Clean out old records to keep the collection in sync with the curriculum file.
+  await prisma.course.deleteMany({});
+
   for (const course of courses) {
     await prisma.course.upsert({
       where: { id: course.id },

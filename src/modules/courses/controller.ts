@@ -77,11 +77,16 @@ export async function renderCoursesView(req: Request, res: Response, next: NextF
     }));
 
     const yearLong = viewModel.filter((course) => course.block === 0);
+    const internshipCourses = yearLong.filter(
+      (c) => /stage|internship/i.test(c.name) || c.block === 0,
+    );
+    const minorCourses = yearLong.filter((c) => /minor/i.test(c.name) || c.block === 0);
 
     res.render('courses', {
       title: 'Courses',
       grid,
-      yearLong,
+      internshipCourses,
+      minorCourses,
     });
   } catch (err) {
     next(err); // forwards to error handler
